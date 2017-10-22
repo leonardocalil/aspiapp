@@ -1,0 +1,109 @@
+<div class="btn-group">
+  	<button type="submit" class="btn btn-secondary" ng-click="back()" >Voltar</button>
+</div>
+<form name="form" novalidate>
+<div class="panel panel-default">
+  <div class="panel-heading">Geral</div>
+  <div class="panel-body">  
+	  <div class="form-group"  >
+	    <label class="control-label">Id</label>
+	    <input type="text" class="form-control" name="id" ng-model="model.id" readonly="readonly" />    
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': form.name.$invalid && submitted}" >
+	    <label class="control-label">Nome</label>
+	    <input type="text" class="form-control" name="name" ng-model="model.name" ng-minlength="3" required placeholder="Nome" />
+	    <p ng-show="form.name.$invalid && submitted" class="help-block">Nome deve conter no m&iacute;inimo 3 caracter.</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': (form.document.$invalid || (model.document.length != 14 && model.document.length != 19))   && submitted}" >
+	    <label class="control-label">Documento</label>
+	    <input type="text" class="form-control" name="document" ng-model="model.document" ng-minlength="14" required placeholder="Documento" format-document />
+	    <p ng-show="(form.document.$invalid || (model.document.length != 14 && model.document.length != 19))  && submitted" class="help-block">Documento deve conter 11 ou 15 caracteres, ex: XXX.XXX.XXX-XX ou XXX.XXX.XXX/XXXX-XX</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': form.phone.$invalid  && submitted}" >
+	    <label class="control-label">Telefone</label>
+	    <input type="text" class="form-control" name="phone" ng-model="model.phone" ng-minlength="14" required placeholder="Telefone com DDD ex: (XX) XXXX-XXXX " format-phone />
+	    <p ng-show="form.phone.$invalid  && submitted" class="help-block">Telefone deve conter no m&eacute;nimo 10</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': form.email.$invalid && submitted}" >
+	    <label class="control-label">E-mail</label>
+	    <input type="email" class="form-control" name="email" ng-model="model.email" placeholder="E-mail" />
+	    <p ng-show="form.email.$invalid && submitted" class="help-block">E-mail est&aacute; no formato invalido</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': form.address_name.$invalid && submitted}" >
+	    <label class="control-label">Endere&ccedil;o</label>
+	    <input type="text" class="form-control" name="address_name" ng-model="model.address_name" required  placeholder="Endere&ccedil;o" />
+	    <p ng-show="form.address_name.$invalid && submitted" class="help-block">Informe o Endere&ccedil;o</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': form.address_number.$invalid && submitted}" >
+	    <label class="control-label">N&uacute;mero</label>
+	    <input type="number" class="form-control" name="address_number" ng-model="model.address_number" required  placeholder="N&uacute;mero" />
+	    <p ng-show="form.address_number.$invalid && submitted" class="help-block">Informe o N&uacute;mero</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': form.address_complement.$invalid && submitted}" >
+	    <label class="control-label">Complemento</label>
+	    <input type="text" class="form-control" name="address_complement" ng-model="model.address_complement" required  placeholder="Complemento ex: Casa, Apartamento" />
+	    <p ng-show="form.address_complement.$invalid && submitted" class="help-block">Informe o Complemento</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': form.zip_code.$invalid && submitted}" >
+	    <label class="control-label">CEP</label>
+	    <input type="text" class="form-control" name="zip_code" ng-minlength="10" ng-model="model.zip_code" required   placeholder="CEP" format-zip-code />
+	    <p ng-show="form.zip_code.$invalid && submitted" class="help-block">Informe o CEP no formato XX.XXX-XXX</p>
+	  </div>
+	  	  
+ 	</div>
+ 	<div class="panel-heading">Hieraquia</div>
+  	<div class="panel-body">
+		<div class="form-group" ng-class="{ 'has-error': (model.role.id == 0 || model.role.id == null || form.role.$invalid) && submitted} " >
+			<label class="control-label">Cargo</label>
+			<select name="role" id="role" ng-model="model.role.id"  
+				ng-options="role.id as role.name for role in roles" required>	      
+		    </select>
+			<p ng-show="(model.role.id == 0 || model.role.id == null || form.role.$invalid) && submitted" class="help-block">Cargo deve ser selecionado.</p> 
+	  	</div>
+	  	<div class="form-group" ng-class="{ 'has-error': form.boss.$invalid && submitted} " >
+			<label class="control-label">Superior Imediato</label>
+			<select name="boss" id="boss" ng-model="model.boss.id" required 
+				ng-options="person.id as person.name for person in persons">	      
+		    </select>
+		    <p ng-show="form.boss.$invalid  && submitted" class="help-block">Superior deve ser selecionado, caso n&atilde;o tenha selecionar --N/A--</p>			
+	  	</div>		
+  	</div>    
+  	<button type="submit" class="btn btn-primary" ng-click="save()" >Salvar</button>
+</div>
+</form>
+<form name="form_access" novalidate>
+<!-- ng-if="model.id != null && model.id != 0" -->
+<div class="panel panel-default" ng-if="model.id != null && model.id != 0" >
+  <div class="panel-heading">Acesso ao sistema</div>
+  <div class="panel-body">
+  	  <div class="form-group" ng-class="{ 'has-error': form_access.login.$invalid && !form_access.login.$pristine}" >
+		   <label class="control-label">Usu&aacute;rio</label>
+		   <input type="text" class="form-control" name="login" ng-model="model.login" ng-minlength="3" required placeholder="Usu&aacute;rio" />
+		   <p ng-show="form_access.login.$invalid && !form_access.login.$pristine" class="help-block">Usu&aacute;rio deve conter no m&iacute;nimo 3 caracteres</p>
+	  </div>  
+	  <div class="form-group" ng-class="{ 'has-error': form_access.password.$invalid && !form_access.password.$pristine}" >
+		   <label class="control-label">Senha</label>
+		   <input type="password" class="form-control" name="password" ng-model="password_tmp" ng-minlength="3" required placeholder="Senha" />
+		   <p ng-show="form_access.password.$invalid && !form_access.password.$pristine" class="help-block">Senha deve conter no m&iacute;nimo 3 caracteres</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error':  form_access.password_c.$invalid && !form_access.password_c.$pristine}" >
+		   <label class="control-label">Confirmar Senha</label>
+		   <input type="password" class="form-control" name="password_c" ng-model="password_c" ng-minlength="3" required placeholder="Confirmar Senha" valid-password="password_tmp" />
+		   <p ng-show="form_access.password_c.$invalid && !form_access.password_c.$pristine" class="help-block">Senha n&atilde;o &eacute; igual a informada no campo anterior</p>
+	  </div>
+	  <div class="form-group" ng-class="{ 'has-error': form.access_level.$invalid && submitted} " >
+			<label class="control-label">N&iacute;vel de Acesso</label>
+			<select name="access_level" id="access_level" ng-model="model.access_level"  
+				ng-options="access_level.id as access_level.name for access_level in access_levels" required>	      
+		    </select>
+			<p ng-show="form.access_level.$invalid  && submitted" class="help-block">N&iacute;vel de Acesso deve ser selecionado</p>			
+	  </div>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="update_access()" ng-disabled="form_access.$invalid">Salvar</button>
+</div>  
+</form>
+  
+ 
+  
+
+

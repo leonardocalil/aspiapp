@@ -1,0 +1,34 @@
+<div class="form-group" >
+	<label class="control-label">Destino</label>
+	<select name="boss" id="boss" ng-model="site" 
+		ng-change="changeFilter(site)" 
+		ng-options="aux.id as aux.name for aux in sites">	      
+    </select>			
+</div>
+
+<uib-accordion close-others="false">
+    <div uib-accordion-group class="panel-default" is-open="model.viewOpen" is-disabled="true"  ng-repeat="model in models | orderBy:'datetime':false">
+      <uib-accordion-heading >
+      	Pedido Nr: {{model.id}}, Cliente: {{model.client.name}} , Data/Hora: {{model.datetime}} , Destino: {{model.site.name}}, Status: {{model.status.description}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': model.status.id == 1, 'glyphicon-chevron-right': model.status.id != 1}" ng-click="setStatus(model,1)">{{model.status.id != 1 && ' Clique aqui para atender o pedido' || ''}}</i>
+      </uib-accordion-heading>
+      <table class="table table-condensed table-bordered table-striped">
+		    <thead>
+		    	<th>Tipo</th>
+		    	<th>Produto</th>
+		    	<th>Quantidade</th>
+		    </thead>
+		    <tbody>
+		    	<tr ng-repeat="detail in model.products | orderBy:'product.productType.description':false"  >
+				    <td>{{detail.product.productType.description}}</td>
+				    <td>{{detail.product.name}}</td>		           
+				    <td>{{detail.quantity}}</td>		           				    
+			    </tr>
+		    </tbody>
+		    
+		</table>
+		<button type="button" class="btn btn-default" ng-click="setStatus(model,0)" >Devolver para Fila</button>
+		<button type="button" class="btn btn-warning" ng-click="setStatus(model,3)" >Cancelar Pedido</button>
+      	<button type="button" class="btn btn-primary" ng-click="setStatus(model,2)" >Concluir Pedido</button>
+      
+    </div>
+</uib-accordion>

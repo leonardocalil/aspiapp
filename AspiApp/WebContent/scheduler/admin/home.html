@@ -1,0 +1,90 @@
+<div id="wrapper" ng-controller="HomeCtrl">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">LL&T - Desenvolvimento de Sistemas</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                
+                
+                
+                <li class="dropdown">
+                
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">                        
+                        <li>
+                            <a href="#" ng-click="menuPage('store')"><i class="fa fa-bank fa-fw"></i> Lojas</a>
+                        </li>
+                        <li>
+                            <a href="#" ><i class="fa fa-users fa-fw"></i> Funcionarios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#" ng-click="menuPage('employee_role')">Cargos</a>
+                                </li>
+                                <li>
+                                    <a href="#"  ng-click="menuPage('employee_person')" >Pessoas</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" ><i class="fa fa-barcode fa-fw"></i> Produtos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#" ng-click="menuPage('product_type')">Tipos</a>
+                                </li>
+                                <li>
+                                    <a href="#"  ng-click="menuPage('product_item')" >Itens</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#" ><i class="fa fa-cart-arrow-down fa-fw"></i> Pedidos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#" ng-click="menuPage('order_queue')">Fila</a>
+                                </li>
+                                
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                                               
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div ng-include="page"></div>
+
+
+</div>
+

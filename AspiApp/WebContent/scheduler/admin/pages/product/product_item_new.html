@@ -1,0 +1,40 @@
+<div class="btn-group">
+  	<button type="submit" class="btn btn-secondary" ng-click="back()" >Voltar</button>
+</div>
+<form name="form" novalidate>
+  
+  <div class="form-group"  >
+    <label class="control-label">Id</label>
+    <input type="text" class="form-control" name="id" ng-model="model.id" readonly="readonly" />    
+  </div>
+  <div class="form-group" ng-class="{ 'has-error': (model.productType.id == 0 || model.productType.id == null) && submitted} " >
+  	  <label class="control-label">Tipo de Produto</label>
+	  <select name="productType" id="productType" ng-model="model.productType.id"  
+	  ng-options="type.id as type.description for type in productTypes" required>	      
+	    </select>
+	  <p ng-show="(model.productType.id == 0 || model.productType.id == null) && submitted" class="help-block">Tipo de Produto deve ser selecionado.</p> 
+  </div>
+  <div class="form-group" ng-class="{ 'has-error': form.name.$invalid && submitted}" >
+    <label class="control-label">Nome</label>
+    <input type="text" class="form-control" name="name" ng-model="model.name" ng-minlength="3" required placeholder="Nome" />
+    <p ng-show="form.name.$invalid && submitted" class="help-block">Nome deve conter no minimo 3 caracter.</p>
+  </div>
+  
+  <div class="form-group">  
+    <label class="control-label">Descri&ccedil;&atilde;o</label>
+    <textarea class="form-control" name="description" ng-model="model.description" placeholder="Descri&ccedil;&atilde;o" />     
+  </div>
+  <div class="form-group" ng-class="{ 'has-error': form.cost_price.$invalid && submitted}">  
+    <label class="control-label">Pre&ccedil;o de Custo</label>
+    <input type="text" class="form-control" name="cost_price" ng-model="model.cost_price" ng-minlength="4" required placeholder="Pre&ccedil;o de Custo" format="number" />
+ 	<p ng-show="form.cost_price.$invalid && submitted" class="help-block">Pre&ccedil;o de Custo deve ser prenchido.</p>     
+  </div>
+  <div class="form-group" ng-class="{ 'has-error': form.sale_price.$invalid && submitted}">  
+    <label class="control-label">Pre&ccedil;o de Venda</label>
+    <input type="text" class="form-control" name="sale_price" ng-model="model.sale_price" format="number" ng-minlength="4" required placeholder="Pre&ccedil;o de Venda" />
+    <p ng-show="form.sale_price.$invalid && submitted" class="help-block">Pre&ccedil;o de Venda deve ser prenchido.</p>     
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="save()" >Salvar</button>
+  
+</form>
+

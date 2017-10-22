@@ -1,0 +1,19 @@
+<div class="btn-group">
+  	<button type="submit" class="btn btn-secondary" ng-click="back()" >Voltar</button>
+</div>
+<form name="form" novalidate>
+  
+  <div class="form-group"  >
+    <label class="control-label">Id</label>
+    <input type="text" class="form-control" name="id" ng-model="model.id" readonly="readonly" />    
+  </div>
+  
+  <div class="form-group" ng-class="{ 'has-error': form.description.$invalid && submitted}" >
+    <label class="control-label">Descri&ccedil;&atilde;o</label>
+    <input type="text" class="form-control" name="description" ng-model="model.description" ng-minlength="3" required placeholder="Descri&ccedil;&atilde;o" />
+    <p ng-show="form.description.$error.minlength && submitted" class="help-block">Descri&ccedil;&atilde;o deve conter no minimo 3 caracteres.</p>
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="save()" >Salvar</button>
+  
+</form>
+

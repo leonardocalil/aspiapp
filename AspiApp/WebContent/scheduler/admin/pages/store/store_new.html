@@ -1,0 +1,67 @@
+<div class="btn-group">
+  	<button type="submit" class="btn btn-secondary" ng-click="back()" >Voltar</button>
+</div>
+<form name="form" novalidate>
+	
+	 <div class="form-group"  >
+	   <label class="control-label">Id</label>
+	   <input type="text" class="form-control" name="id" ng-model="model.id" readonly="readonly" />    
+	 </div>
+	 <div class="form-group" ng-class="{ 'has-error': form.name.$invalid && submitted}" >
+	   <label class="control-label">Nome</label>
+	   <input type="text" class="form-control" name="name" ng-model="model.name" ng-minlength="3" required placeholder="Nome" />
+	   <p ng-show="form.name.$invalid && submitted" class="help-block">Nome deve conter no m&iacute;inimo 3 caracter.</p>
+	 </div>
+	 <div class="form-group" ng-class="{ 'has-error': (form.document.$invalid || (model.document.length != 14 && model.document.length != 19))   && submitted}" >
+	   <label class="control-label">Loja Fisica</label>
+	   <label>
+		    <input type="radio" ng-model="model.physical_store" value="0">
+		    N&atilde;o
+	    </label>
+		<label>
+		    <input type="radio" ng-model="model.physical_store" value="1">
+		    Sim
+		</label>
+	 </div>
+	 <div ng-if="model.physical_store == 1">
+		 <div class="form-group" ng-class="{ 'has-error': (form.document.$invalid || (model.document.length != 14 && model.document.length != 19))   && submitted}" >
+		   <label class="control-label">Documento</label>
+		   <input type="text" class="form-control" name="document" ng-model="model.document" ng-minlength="14" required placeholder="Documento" format-document />
+		   <p ng-show="(form.document.$invalid || (model.document.length != 14 && model.document.length != 19))  && submitted" class="help-block">Documento deve conter 11 ou 15 caracteres, ex: XXX.XXX.XXX-XX ou XXX.XXX.XXX/XXXX-XX</p>
+		 </div>
+		 <div class="form-group" ng-class="{ 'has-error': form.phone.$invalid  && submitted}" >
+		   <label class="control-label">Telefone</label>
+		   <input type="text" class="form-control" name="phone" ng-model="model.phone" ng-minlength="14" placeholder="Telefone com DDD ex: (XX) XXXX-XXXX " format-phone />
+		   <p ng-show="form.phone.$invalid  && submitted" class="help-block">Telefone deve conter no m&eacute;nimo 10</p>
+		 </div>
+		 <div class="form-group" ng-class="{ 'has-error': form.email.$invalid && submitted}" >
+		   <label class="control-label">E-mail</label>
+		   <input type="email" class="form-control" name="email" ng-model="model.email" placeholder="E-mail" />
+		   <p ng-show="form.email.$invalid && submitted" class="help-block">E-mail est&aacute; no formato invalido</p>
+		 </div>
+		 <div class="form-group" >
+		   <label class="control-label">Endere&ccedil;o</label>
+		   <input type="text" class="form-control" name="address_name" ng-model="model.address_name" placeholder="Endere&ccedil;o" />
+		 </div>
+		 <div class="form-group" >
+		   <label class="control-label">N&uacute;mero</label>
+		   <input type="number" class="form-control" name="address_number" ng-model="model.address_number" placeholder="N&uacute;mero" />
+		 </div>
+		 <div class="form-group">
+		   <label class="control-label">Complemento</label>
+		   <input type="text" class="form-control" name="address_complement" ng-model="model.address_complement" placeholder="Complemento ex: Casa, Apartamento" />
+		 </div>
+		 <div class="form-group" ng-class="{ 'has-error': form.zip_code.$invalid && submitted}" >
+		   <label class="control-label">CEP</label>
+		   <input type="text" class="form-control" name="zip_code" ng-minlength="13" ng-model="model.zip_code" required   placeholder="CEP" format-zip-code />
+		   <p ng-show="form.zip_code.$invalid && submitted" class="help-block">Informe o CEP no formato XX.XXX.XXX-XX</p>
+		 </div>
+	</div> 	  
+ 	
+  	<button type="submit" class="btn btn-primary" ng-click="save()" >Salvar</button>
+</form>
+  
+ 
+  
+
+

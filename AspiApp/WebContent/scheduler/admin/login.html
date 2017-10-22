@@ -1,0 +1,17 @@
+<link href="../css/signin.css" rel="stylesheet">
+<div class="container">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Acesso ao Sistema</h2>
+        <label for="inputLogin" class="sr-only">Usuario</label>
+        <input type="text" id="inputLogin" class="form-control" placeholder="Usuario" ng-model="user" required autofocus>
+        <label for="inputPassword" class="sr-only">Senha</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Senha" ng-model="password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="button" ng-click="login()">Entrar</button>
+        <div class="etc-login-form">
+				<p>Esqueceu a senha? <a href="#">Clique aqui</a></p>
+		
+		</div>
+      </form>
+
+</div> <!-- /container -->
